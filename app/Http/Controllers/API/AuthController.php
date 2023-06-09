@@ -18,6 +18,7 @@ class AuthController extends Controller
             'email' => 'required|email|exists:users,email',
             'password' => 'required|string',
         ]);
+
         if (!$validator->fails()) {
             $user = User::where('email', $request->get('email'))->first();
             if (Hash::check($request->get('password'), $user->password)) {
